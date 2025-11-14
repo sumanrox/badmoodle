@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "badmoodle"
+version = "0.2.0"
+description = "Moodle community-based vulnerability scanner"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "cyberaz0r"}
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.2",
+]
+
+[project.urls]
+Repository = "https://github.com/cyberaz0r/badmoodle"
+
+[project.scripts]
+badmoodle = "badmoodle:main"
+
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["F403", "F405", "E501", "E402"]  # Allow star imports, long lines, and module-level imports after code (needed for sys.dont_write_bytecode)

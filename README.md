@@ -51,6 +51,81 @@ Installing badmoodle is very simple, it can be performed in just a few steps:
 
 If you see the badmoodle logo and help with no errors you are good to go :)
 
+## Development
+
+### Setup
+
+For development, it's recommended to use a virtual environment:
+
+```bash
+# Create virtual environment
+python3 -m venv .venv
+
+# Activate it
+source .venv/bin/activate  # On Linux/macOS
+# or
+.venv\Scripts\activate  # On Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install development dependencies
+pip install pytest>=7.4.0 ruff>=0.1.0
+```
+
+### Running Tests
+
+badmoodle includes a comprehensive test suite for core functionality:
+
+```bash
+# Run all tests with verbose output
+pytest tests/ -v
+
+# Run tests for a specific module
+pytest tests/test_version.py -v
+pytest tests/test_update.py -v
+
+# Run with coverage (requires pytest-cov)
+pytest tests/ --cov=lib --cov=utils
+```
+
+### Code Quality
+
+The project uses modern Python practices:
+
+**Requirements:**
+- Python 3.8+ (tested on 3.8 through 3.13)
+- All dependencies pinned with minimum versions in `requirements.txt`
+
+**Code Style:**
+- Linted with [ruff](https://github.com/astral-sh/ruff)
+- f-strings for string formatting
+- Explicit UTF-8 encoding for file operations
+- Type hints where appropriate
+- Spaces (not tabs) for indentation
+
+**Running the Linter:**
+
+```bash
+# Check for issues
+ruff check .
+
+# Auto-fix issues where possible
+ruff check --fix .
+
+# Format code
+ruff format .
+```
+
+**Continuous Integration:**
+
+The project uses GitHub Actions for CI/CD:
+- Runs tests on Python 3.8, 3.9, 3.10, 3.11, 3.12, and 3.13
+- Performs syntax validation
+- Runs linting checks with ruff
+
+See `.github/workflows/ci.yml` for the full CI configuration.
+
 ## Usage
 
 Using badmoodle is also very simple. Once installed you can run it with the following options:
